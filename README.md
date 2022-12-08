@@ -4,13 +4,12 @@
   various purposes.
 
 * Most of them should be pretty self-explanatory and require little 
-  modification to work. As they are written for myself, I don't care about 
-  POSIX or portability too much.
+  modification to work. As they are written for myself, I don't care 
+  too much about POSIX or portability in general.
 
 * Modify the scripts as you see fit.
-  Where they obviously need to be changed, I added '<>' markers.
-  For example, replace '<HOSTNAME>' with a hostname of one of your servers that you can SSH into.
-
+  Where they obviously need to be changed, I added **<>** markers.
+  For example, replace **<HOSTNAME>** with a hostname of one of your servers that you can SSH into.
 
 ### Notes
 
@@ -19,7 +18,7 @@
 - execute in the folder where you keep your git projects
 
 - it will print a short status about each projects, letting you quickly 
-  check the state of your project folders
+  check the state of your various projects
 
 [sync.sh](sync.sh)
 
@@ -37,10 +36,14 @@
 - if you want to delete data from multiple clients and servers, you would need to do the following
 
     - delete the unwanted data from one client
+
     - use the '-d' option to remove the data from the servers
+
     - then either manually remove the data from the other clients (preventing a renewed upload)
+
     - or completely delete the data on the other clients (so a new sync will pull down the new data)
 
+    - this applies only to multi-client setups, for a single client just use the '-d' option
 
 [status2.sh](status2.sh)
 
