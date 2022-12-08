@@ -27,6 +27,8 @@
 - its not really designed for bi-directional syncronization, so deleting 
   data in a multi-client setup is a bit cumbersome, but possible (see below)
 
+- apart from the hardcoded default hosts, specify addition hosts with '-a Host1 -a Host2' etc.
+
 - in "normal" mode (with just the two locations specified), data is just copied
   to the remote server
 

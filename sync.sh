@@ -1,10 +1,11 @@
 #!/bin/bash 
-declare -a target_hosts=("<HOST>" "<HOST>")
+declare -a default_hosts=("HOST1 HOST2 HOST3")
 
 RSYNC_OPTS=("-avzhu")
 
 opt_remote=""
 opt_local=""
+declare -a opt_hosts=()
 opt_del=false
 opt_sync=false
 opt_quiet=false
@@ -23,13 +24,14 @@ print_help() {
         then
                 echo -en "\033[0;35m"
                 echo "+------------------------------------+"
-                echo "| sync_all_the_things           v1.0 |"
+                echo "| sync_all_the_things           v0.1 |"
                 echo "+-------------+----------------------+"
                 echo "| options     |          description |"
                 echo "+-------------+----------------------+"
                 echo "| -h          |      print this help |"
                 echo "| -r <path>   |   path on the remote |"
                 echo "| -l <path>   |    path to local dir |"
+                echo "| -a <host>   |     additional hosts |"
                 echo "| -d          |     delete on server |"
                 echo "| -s          |   sync (push & pull) |"
                 echo "| -q          |    quiet (no output) |"
@@ -89,7 +91,7 @@ print_usage() {
         exit 0
 }
 
-while getopts 'hr:l:dsqf:' OPTION; do
+while getopts 'hr:l:a:dsqf:' OPTION; do
   case "$OPTION" in
     h)
       print_help
@@ -100,6 +102,9 @@ while getopts 'hr:l:dsqf:' OPTION; do
       ;;
     l)
       opt_local=$OPTARG
+      ;;
+    a)
+      opt_hosts+=("$OPTARG")
       ;;
     d)
       opt_del=true
@@ -202,7 +207,9 @@ main_func() {
         local_path="$(terminate_path "$opt_local")"
         remote_path="$(terminate_path "$opt_remote")"
 
-        for host in "${target_hosts[@]}"
+        hosts+=("${default_hosts[@]}" "${opt_hosts[@]}")
+
+        for host in "${hosts[@]}"
         do
                 if ! ping_server $host
                 then
