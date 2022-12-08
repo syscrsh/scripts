@@ -8,8 +8,8 @@
   too much about POSIX or portability in general.
 
 * Modify the scripts as you see fit.
-  Where they obviously need to be changed, I added **<>** markers.
-  For example, replace **<HOSTNAME>** with a hostname of one of your servers that you can SSH into.
+  Where they obviously need to be changed, I added placeholders.
+  For example, replace **HOSTNAME** with a hostname of one of your servers that you can SSH into.
 
 ### Notes
 
